@@ -53,10 +53,12 @@ Log in as the postgres user:
 Bash
 sudo -i -u postgres
 (Your terminal prompt will change to postgres@...)
+
 Start the PostgreSQL command line:
 Bash
 psql
 (Your prompt will now be postgres=#)
+
 Copy and paste these commands one by one, pressing Enter after each one:
 SQL
 CREATE USER fifauser WITH PASSWORD 'fifapassword';
@@ -66,28 +68,33 @@ Log out of the postgres user session:
 Bash
 exit
 (You should be back to your normal prashuna@... prompt).
+
 Step 2.3: Allow Password Logins
 By default, PostgreSQL is very strict. We need to tell it to allow our new fifauser to log in with its password.
 Open the configuration file with a simple text editor:
 code
 Bash
 sudo nano /etc/postgresql/16/main/pg_hba.conf
+
 Use the arrow keys to scroll down and find the lines that start with local and host.
 Change the last word on those lines (peer or scram-sha-256) to md5. It should look like this:
-code
-Code
+
+
 local   all             all                                     md5
 host    all             all             127.0.0.1/32            md5
 Save and exit: Press Ctrl + X, then type Y, then press Enter.
+
 Restart the database to apply the changes:
-code
+
 Bash
 sudo systemctl restart postgresql
 The database is now fully prepared!
+
 Part 3: Running the Project
 Now for the exciting part! Let's get the code and run our data pipeline.
+
 Step 3.1: Get the Project Code
-code
+
 Bash
 # Go to a folder where you like to keep projects, like Workspace
 cd ~/Workspace/
@@ -97,27 +104,30 @@ git clone (https://github.com/PrashunaBuddhacharya/fifa-etl-pipeline)
 
 # Go into the new project folder
 cd fifa-etl-project
+
 Step 3.2: Get the Required Files
 FIFA Data: Go to the Kaggle FIFA Dataset page, download the zip file, rename it to fifa1.zip, and move it into the data/ folder inside your new project.
 Database Connector: Go to the PostgreSQL JDBC Driver page, download the latest .jar file, and move it directly into your main fifa-etl-project folder.
+
 Step 3.3: Run the ETL Pipeline
 This is where the magic happens. We will run the three scripts in order.
 Activate your Python sandbox:
-code
+
 Bash
 source ~/Workspace/pyspark/venv/bin/activate
 (Your terminal prompt will now start with (venv))
+
 Run the EXTRACT script: This unzips the data.
-code
+
 Bash
 python3 extract/execute.py extracted_data
 Run the TRANSFORM script: This cleans the data.
 (First, check the exact name of the unzipped file with ls extracted_data)
-code
+
 Bash
 python3 transform/execute.py extracted_data/players_22.csv transformed_data
 Run the LOAD script: This saves the clean data to your database.
-code
+
 Bash
 python3 load/execute.py transformed_data
 Your data is now processed and stored!
