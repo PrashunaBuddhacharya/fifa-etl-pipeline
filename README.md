@@ -121,28 +121,14 @@ code
 Bash
 python3 load/execute.py transformed_data
 Your data is now processed and stored!
-Part 4: View the Results in a Dashboard
-We will use a tool called Apache Superset to create our dashboard.
-(This part assumes you have already installed Superset in its own virtual environment at ~/Workspace/superset_project/ as shown in your other manual).
-Open a NEW terminal.
-Start the Superset server:
+
+Part 4: View the Results in the Streamlit Dashboard
+Now that the data is in the database, you can launch the interactive web dashboard.
+Make sure you are still in the fifa-etl-project folder and your (venv) is active.
+Run the Streamlit application:
 code
 Bash
-# Go to the Superset folder
-cd ~/Workspace/superset_project
-
-# Activate its virtual environment
-source ven v/bin/activate
-
-# Run the server
-superset run -p 8088
-Open your web browser to http://localhost:8088 and log in.
-Connect to your database by clicking + -> Data -> Connect Database and using these details:
-Database: PostgreSQL
-Host: localhost
-Database Name: fifadb
-Username: fifauser
-Password: fifapassword
-Add your master_player_table as a new Dataset.
-Go to the Charts section and create your visualizations!
+streamlit run app.py
+Your web browser should automatically open a new tab to http://localhost:8501.
+You can now see and interact with your dashboard, exploring all the FIFA player data you just processed!
 Congratulations! You have successfully run the entire project from start to finish.
