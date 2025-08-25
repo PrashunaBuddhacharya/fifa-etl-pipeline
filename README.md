@@ -86,7 +86,7 @@ Bash
 cd ~/Workspace/
 
 # Copy the project from GitHub (replace the URL with your own)
-git clone https://github.com/YOUR_USERNAME/fifa-etl-project.git
+git clone (https://github.com/PrashunaBuddhacharya/fifa-etl-pipeline)
 
 # Go into the new project folder
 cd fifa-etl-project
