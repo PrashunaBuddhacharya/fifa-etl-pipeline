@@ -133,12 +133,18 @@ python3 load/execute.py transformed_data
 Your data is now processed and stored!
 
 Part 4: View the Results in the Streamlit Dashboard
+
 Now that the data is in the database, you can launch the interactive web dashboard.
+
 Make sure you are still in the fifa-etl-project folder and your (venv) is active.
+
 Run the Streamlit application:
-code
+
 Bash
 streamlit run app.py
+
 Your web browser should automatically open a new tab to http://localhost:8501.
+
 You can now see and interact with your dashboard, exploring all the FIFA player data you just processed!
+
 Congratulations! You have successfully run the entire project from start to finish.
